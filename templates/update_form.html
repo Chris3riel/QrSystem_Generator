@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Actualizacion</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<header class="flex justify-between items-center bg-white shadow-md h-10 p-2">
+        <h2 class="col-span-3 font-bold text-gray-500" onclick="history.back()"><box-icon name='arrow-back' color='rgba(0,0,0,0.53)' ></box-icon> Cammer Corporativo Industrial</h2>
+        <nav>
+            <a href="/" class="text-gray-700 font-bold hover:underline"><box-icon name='home' animation='none' color='rgba(0,0,0,0.53)' ></box-icon></a>
+            <a href="/upload" class="ml-4 text-gray-700 font-bold hover:underline"><box-icon name='upload' color='rgba(0,0,0,0.53)' ></box-icon></a>
+            <a href="/view" class="ml-4 text-gray-700 font-bold hover:underline"><box-icon name='qr' flip='horizontal' color='rgba(0,0,0,0.53)' ></box-icon></a>
+        </nav>
+</header>
+<body class="bg-gray-100">
+
+    <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-4">
+        <h2 class="text-2xl font-bold mb-6 text-gray-500 ">Actualizar datos <box-icon type='solid' name='edit-alt' color='rgba(0,0,0,0.53)' ></box-icon></h2>
+        
+        <form id="cargaForm">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2 " for="noSerie">Número de Serie</label>
+                <input type="text" id="noSerie" name="noSerie" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.noSerie }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="fecha">Fecha (DD/MM/YYYY)</label>
+                <input type="text" id="fecha" name="fecha" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="sap">SAP</label>
+                <input type="text" id="sap" name="sap" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.sap }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="prev">Prev</label>
+                <input type="text" id="prev" name="prev" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.prev }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="amp">Amp</label>
+                <input type="text" id="amp" name="amp" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.amp }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="capacidad">Capacidad</label>
+                <input type="text" id="capacidad" name="capacidad" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.capacidad }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="rpm">RPM</label>
+                <input type="text" id="rpm" name="rpm" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.rpm }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="corr">Corriente</label>
+                <input type="text" id="corr" name="corr" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.corr }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="voltaje">Voltaje</label>
+                <input type="text" id="voltaje" name="voltaje" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.voltaje }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="frame">Frame</label>
+                <input type="text" id="frame" name="frame" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.frame }}" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="tels">Tels</label>
+                <input type="text" id="tels" name="tels" value="7282810503. 7282812355" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" value="3 DE MAYO No. 100 STA. MARIA ATARASQUILLO, LERMA EDO. DE MÉXICO C.P. 52044" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" value="CAMMER CORPORATIVO INDUSTRIAL S.A DE C.V." class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="empresa">Descripcion</label>
+                <input type="text" id="descripcion" name="descripcion" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ item.descripcion }}" required>
+            </div>
+
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Enviar
+            </button>
+        </form>
+
+        <div id="result" class="mt-6"></div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#cargaForm').on('submit', function(event){
+                event.preventDefault();
+
+                let formData = {
+                    noSerie: $('#noSerie').val(),
+                    fecha: $('#fecha').val(),
+                    sap: $('#sap').val(),
+                    prev: $('#prev').val(),
+                    amp: $('#amp').val(),
+                    capacidad: $('#capacidad').val(),
+                    rpm: $('#rpm').val(),
+                    corr: $('#corr').val(),
+                    voltaje: $('#voltaje').val(),
+                    frame: $('#frame').val(),
+                    tels: $('#tels').val(),
+                    direccion: $('#direccion').val(),
+                    empresa: $('#empresa').val(),
+                    descripcion: $('#descripcion').val()
+                };
+
+                $.ajax({
+                    url: '/carga',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        $('#result').html('<div class="text-green-500">Datos enviados con éxito:</div><pre>' + JSON.stringify(response, null, 2) + '</pre>');
+                    },
+                    error: function(xhr, status, error) {
+                        $('#result').html('<div class="text-red-500">Error al enviar datos: ' + xhr.responseText + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

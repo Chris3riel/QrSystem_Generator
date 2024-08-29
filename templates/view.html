@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vista de datos</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    </head>
+    <header>
+        <div class="mx-auto flex justify-between items-center px-4 bg-white h-10 container rounded drop-shadow-md hover:drop-shadow-xl">
+           <h2 class="font-bold text-gray-500" onclick="history.back()">Cammer Corporativo Industrial</h2> 
+            <nav>
+                <a href="/" class="text-gray-700 hover:text-rose-500"><box-icon name='home' animation='none' color='rgba(0,0,0,0.53)' ></box-icon></a>
+                <a href="/upload" class="ml-4 text-gray-700 hover:underline"><box-icon name='upload' color='rgba(0,0,0,0.53)' ></box-icon></a>
+                <a href="/view" class="ml-4 text-gray-700 hover:underline"><box-icon name='qr' flip='horizontal' color='rgba(0,0,0,0.53)' ></box-icon></a>
+            </nav>
+        </div>
+    </header>
+    <body class="bg-gray-200">
+        <div class="container mx-auto py-8">
+        <h1 class="text-4xl font-bold mb-6 text-center text-gray-600 bg-white ">Tabla de datos</h1>
+            <table class="min-w-full bg-white shadow-md rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b border-r">No. Serie</th>
+                        <th class="py-2 px-4 border-b">QR Code</th>
+                        <th class="py-2 px-4 border-b">Información</th>
+                        <th class="py-2 px-4 border-b border-l">Historial</th>
+                        <th class="py-2 px-4 border-b border-l">Imprimir</th>
+                    </tr>
+                </thead>
+
+                <tbody id="data-table">
+                    <!-- Los datos se insertan aqui -->
+                </tbody>
+                
+            </table>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                // Fetch data to initially populate the table
+                $.getJSON('/all', function(data) {
+                    var uniqueNoSeries = [];
+        
+                    $.each(data, function(index, item) {
+                        // Create a new row only if noSerie hasn't been added yet
+                        if ($.inArray(item.noSerie, uniqueNoSeries) === -1) {
+                            uniqueNoSeries.push(item.noSerie);
+        
+                            // Create a new row
+                            var row = $('<tr></tr>');
+        
+                            // No. Serie Column
+                            row.append('<td class="py-2 px-4 border-b text-center border-r">' + item.noSerie + '</td>');
+        
+                            // QR Code Column
+                            var qrCell = $('<td class="py-2 px-4 border-b text-center"></td>');
+                            var qrImage = $('<img>');
+                            qrImage.attr('src', '/qrcode/' + item.noSerie);
+                            qrImage.attr('alt', 'QR Code');
+                            qrImage.addClass('mx-auto');
+                            qrImage.addClass('printable-image'+ item.noSerie);
+                            qrCell.append(qrImage);
+                            row.append(qrCell);
+        
+                            // Information Column
+                            var infoCell = $('<td class="py-2 px-4 border-b"></td>');
+                            var infoContent = 
+                                'Fecha: ' + item.fecha + '<br>' +
+                                'SAP: ' + item.sap + '<br>' +
+                                'Prev: ' + (item.prev ? 'Yes' : 'No') + '<br>' +
+                                'Amp: ' + item.amp + '<br>' +
+                                'Capacidad: ' + item.capacidad + '<br>' +
+                                'RPM: ' + (item.rpm ? item.rpm : 'N/A') + '<br>' +
+                                'Corr: ' + item.corr + '<br>' +
+                                'Voltaje: ' + item.voltaje + '<br>' +
+                                'Frame: ' + item.frame + '<br>' +
+                                'Tels: ' + item.tels + '<br>' +
+                                'Direccion: ' + item.direccion + '<br>' +
+                                'Empresa: ' + item.empresa + '<br>' +
+                                'Descripcion: ' + item.descripcion;
+                            infoCell.html(infoContent.replace(/\n/g, '<br>'));
+                            row.append(infoCell);
+        
+                            // History column
+                            var historyCell = $('<td class="py-2 px-4 border-b border-l text-center"></td>');
+                            var historyButton = $('<button class="bg-green-500 text-white p-2 rounded">Historial</button>');
+                            var historyTextarea = $('<textarea class="mt-2 p-2 w-full h-40 bg-white border rounded hidden" id="history-textarea"></textarea>');
+
+                            historyButton.on('click', function() {
+                            if (historyTextarea.hasClass('hidden')) {
+                                historyTextarea.val(''); // Limpiar contenido previo
+
+                                // Obtener el número de serie del elemento actual (debes asegurarte de que 'item.noSerie' esté disponible)
+                                var noSerie = item.noSerie;
+
+                                // Consumir la API Python para obtener el historial del número de serie
+                                $.getJSON('/historico/' + noSerie, function(records) {
+                                    // Ordenar registros por fecha (suponiendo que 'fecha' está en un formato sortable como YYYY-MM-DD)
+                                    records.sort(function(a, b) {
+                                        return new Date(b.fecha) - new Date(a.fecha);
+                                    });
+
+                                    // Recorrer los registros y agregarlos al textarea
+                                    $.each(records, function(index, record) {
+                                        var recordContent = 
+                                            'Fecha: ' + record.fecha + '\n' + /*
+                                            'SAP: ' + record.sap + '\n' +
+                                            'Prev: ' + (record.prev ? 'Sí' : 'No') + '\n' +
+                                            'Amp: ' + record.amp + '\n' +
+                                            'Capacidad: ' + record.capacidad + '\n' +
+                                            'RPM: ' + (record.rpm ? record.rpm : 'N/A') + '\n' +
+                                            'Corr: ' + record.corr + '\n' +
+                                            'Voltaje: ' + record.voltaje + '\n' +
+                                            'Frame: ' + record.frame + '\n' +
+                                            'Tels: ' + record.tels + '\n' +
+                                            'Dirección: ' + record.direccion + '\n' +
+                                            'Empresa: ' + record.empresa + '\n' +*/
+                                            'Descripción: ' + record.descripcion + '\n\n';
+                                        historyTextarea.val(historyTextarea.val() + recordContent);
+                                    });
+
+                                    // Mostrar el textarea con el historial
+                                    historyTextarea.removeClass('hidden');
+                                });
+                                } else {
+                                    // Ocultar el textarea si ya está visible
+                                    historyTextarea.addClass('hidden');
+                                }
+                            });
+
+        
+                            historyCell.append(historyButton);
+                            historyCell.append(historyTextarea);
+                            row.append(historyCell);
+
+                            //Imprimir column
+                            var printCell = $('<td class="py-2 px-4 border-b text-center border-l p-2"></td>');
+                            var printButton = $('<button class="bg-white text-gray-800 p-2 font-bold rounded"><box-icon name="printer" flip="horizontal" color="rgba(0,0,0,0.53)"></box-icon></button>');
+                            var it = item.noSerie;
+
+                            printButton.on('click', function(){
+                                var contenido = $(`.printable-image${it}`);
+                                var printWindow = window.open('', '', 'height=400,width=600');
+                                printWindow.document.write(contenido + '<button onclick="window.print()">Imprimir</button>');
+                                printWindow.document.close();
+                                console.log(contenido, it);
+                            });
+
+                            printCell.append(printButton);
+                            row.append(printCell);
+                            $('#data-table').append(row);
+                        }
+                    });
+                });
+            });
+        </script>
+        
+    </body>
+    </html>

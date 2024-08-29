@@ -1,0 +1,13 @@
+flet 
+qrcode
+fastapi
+uvicorn
+sqlalchemy 
+asyncpg 
+databases
+pillow 
+opencv-python
+jinja2
+fastapi-cors
+fastapi[all]
+qrcode[pil]
