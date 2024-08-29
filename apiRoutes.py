@@ -238,7 +238,7 @@ def historial_form( item_noSerie: int, db: Session = Depends(get_db)):
 async def run_qr_code_detector():
     try:
         # Ejecutar el script de OpenCV en segundo plano
-        process = subprocess.Popen(["python", "Deteccion_de_codigos_QR.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(["python", "qr_detector.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
         # Devolver una respuesta rápida
         return {"message": "El script de detección de códigos QR se está ejecutando."}
