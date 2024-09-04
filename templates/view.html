@@ -8,28 +8,31 @@
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <header>
         <div class="mx-auto flex justify-between items-center px-4 bg-white h-10 container rounded drop-shadow-md hover:drop-shadow-xl">
-           <h2 class="font-bold text-gray-500" onclick="history.back()">Cammer Corporativo Industrial</h2> 
-            <nav>
-                <a href="/" class="text-gray-700 hover:text-rose-500"><box-icon name='home' animation='none' color='rgba(0,0,0,0.53)' ></box-icon></a>
-                <a href="/upload" class="ml-4 text-gray-700 hover:underline"><box-icon name='upload' color='rgba(0,0,0,0.53)' ></box-icon></a>
-                <a href="/view" class="ml-4 text-gray-700 hover:underline"><box-icon name='qr' flip='horizontal' color='rgba(0,0,0,0.53)' ></box-icon></a>
+           <h2 class="font-bold text-gray-500" onclick="history.back()"><i class='bx bx-arrow-back' ></i> Cammer Corporativo Industrial</h2> 
+            
+            <nav class="gap-4">
+                <a href="/" class="text-gray-500 hover:underline"><i class='bx bx-home-alt-2'></i> Home </a>
+                <a href="/upload" class="ml-4 text-gray-500 hover:underline"><i class='bx bx-upload' ></i> Subir Datos </a>
+                <a href="/view" class="ml-4 text-gray-500 hover:underline"><i class='bx bx-qr' ></i> Lista de Datos </a>
             </nav>
+
         </div>
     </header>
     <body class="bg-gray-200">
         <div class="container mx-auto py-8">
-        <h1 class="text-4xl font-bold mb-6 text-center text-gray-600 bg-white ">Tabla de datos</h1>
+        <h1 class="text-4xl font-bold mb-6 text-center text-gray-600 ">Tabla de datos</h1>
             <table class="min-w-full bg-white shadow-md rounded-lg">
                 <thead>
                     <tr>
-                        <th class="py-2 px-4 border-b border-r">No. Serie</th>
-                        <th class="py-2 px-4 border-b">QR Code</th>
-                        <th class="py-2 px-4 border-b">Información</th>
-                        <th class="py-2 px-4 border-b border-l">Historial</th>
-                        <th class="py-2 px-4 border-b border-l">Imprimir</th>
+                        <th class="py-2 px-4 border-b border-r text-gray-500">No. Serie</th>
+                        <th class="py-2 px-4 border-b text-gray-500">QR Code</th>
+                        <th class="py-2 px-4 border-b text-gray-500">Información</th>
+                        <th class="py-2 px-4 border-b border-l text-gray-500">Historial</th>
+                        <th class="py-2 px-4 border-b border-l text-gray-500">Imprimir</th>
                     </tr>
                 </thead>
 

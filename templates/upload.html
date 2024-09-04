@@ -8,20 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <header class="flex justify-between items-center bg-white shadow-md h-10 p-2">
-        <h2 class="font-bold text-gray-500" onclick="history.back()"><box-icon name='arrow-back' color='rgba(0,0,0,0.53)'></box-icon> Cammer Corporativo Industrial</h2>
-        <nav>
-            <a href="/" class="text-gray-700 font-bold hover:underline"><box-icon name='home' animation='none' color='rgba(0,0,0,0.53)' ></box-icon></a>
-            <a href="/upload" class="ml-4 text-gray-700 font-bold hover:underline"><box-icon name='upload' color='rgba(0,0,0,0.53)' placeholder="Subir datos" ></box-icon></a>
-            <a href="/view" class="ml-4 text-gray-700 font-bold hover:underline"><box-icon name='qr' flip='horizontal' color='rgba(0,0,0,0.53)' ></box-icon></a>
+        <h2 class="font-bold text-gray-500" onclick="history.back()"><i class='bx bx-arrow-back' ></i> Cammer Corporativo Industrial</h2>
+        <nav class="gap-4">
+            <a href="/" class="text-gray-500 hover:underline"><i class='bx bx-home-alt-2'></i> Home </a>
+            <a href="/upload" class="ml-4 text-gray-500 hover:underline"><i class='bx bx-upload' ></i> Subir Datos </a>
+            <a href="/view" class="ml-4 text-gray-500 hover:underline"><i class='bx bx-qr' ></i> Lista de Datos </a>
         </nav>
 </header>
 
 <body class="bg-gray-100">
 
     <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-4">
-        <h2 class="text-2xl font-bold mb-6 text-gray-500">Formulario de Carga <box-icon name='cloud-upload' color='rgba(0,0,0,0.53)' ></box-icon></h2>
+        <h2 class="text-2xl font-bold mb-6 text-gray-500"><i class='bx bx-sort-up'></i> Formulario de Carga</h2>
         
         <form id="cargaForm">
             <div class="mb-4">
@@ -95,7 +96,7 @@
             </div>
 
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Enviar
+                <i class='bx bx-send' ></i> Enviar
             </button>
         </form>
 
