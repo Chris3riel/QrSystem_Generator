@@ -34,7 +34,7 @@ origins = [
     "http://localhost",
     "http://127.0.0.1",
     "http://localhost:5500",  
-    "http://192.168.1.31",   
+    "http://192.168.1.30",   
     "http://0.0.0.0:8000", 
     "http://127.0.0.1:8000"
 ]
@@ -151,7 +151,7 @@ def read_data_card(item_noSerie: int, db: Session = Depends(get_db)):
 
 @app.get("/qrcode/{item_noSerie}")
 def get_qrcode(item_noSerie: int):
-    url = f"http://0.0.0.0:8000/data_card/{item_noSerie}"
+    url = f"http://192.168.1.30:8000/data_card/{item_noSerie}"
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
     qr.add_data(url)
     qr.make(fit=True)
