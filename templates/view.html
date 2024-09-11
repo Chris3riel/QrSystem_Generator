@@ -147,12 +147,20 @@
                             var it = item.noSerie;
 
                             printButton.on('click', function(){
-                                var contenido = $(`.printable-image${it}`);
+                                var contenido = $(`.printable-image${it}`).clone();  // Clonar la imagen para obtener su HTML
                                 var printWindow = window.open('', '', 'height=400,width=600');
-                                printWindow.document.write(contenido + '<button onclick="window.print()">Imprimir</button>');
+                                
+                                // Crear el contenido del documento de impresión
+                                printWindow.document.write('<html><head><title>Imprimir QR</title></head><body>');
+                                printWindow.document.write('<div style="text-align:center;">');
+                                printWindow.document.write(contenido[0].outerHTML);  // Insertar la imagen en el nuevo documento
+                                printWindow.document.write('<br><button onclick="window.print()">Imprimir</button>');
+                                printWindow.document.write('</div>');
+                                printWindow.document.write('</body></html>');
+                                
                                 printWindow.document.close();
-                                console.log(contenido, it);
                             });
+
 
                             printCell.append(printButton);
                             row.append(printCell);
