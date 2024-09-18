@@ -34,7 +34,7 @@ This is a FastAPI-based application designed for Cammer Corporativo Industrial t
 3. Create a PostgreSQL database and update the `DATABASE_URL` environment variable accordingly.
 4. Run the application:
    ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000
+   uvicorn apiRoutes:app --host 0.0.0.0 --port 8000
    ```
 5. Access the application through a web browser: [http://localhost:8000](http://localhost:8000)
 
