@@ -1,5 +1,10 @@
 # Cammer Corporativo Industrial QR Label Generation System
 
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
 ## Overview
 This is a FastAPI-based application designed for Cammer Corporativo Industrial to generate QR labels for their products. The system allows users to create and manage product information, generate QR codes, and retrieve product data.
 
